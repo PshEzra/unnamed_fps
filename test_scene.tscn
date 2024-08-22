@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvic62deedbhy"]
+
+[ext_resource type="Script" path="res://CharacterMovement.gd" id="1_mmv58"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hlpon"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v6nkk"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qtw8s"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p7m8v"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_hlpon")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_v6nkk")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.49111, 0)
+script = ExtResource("1_mmv58")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_qtw8s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_p7m8v")
+
+[node name="Neck" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.503397, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/Neck"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8.52288, 0)
+spot_range = 23.5437
+spot_angle = 56.6559
